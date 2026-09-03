@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Oxanium, Montserrat } from "next/font/google";
-import "./globals.css";
+
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { QueryProvider } from "@/components/providers/query-provider";
+
 import { cn } from "@/lib/utils";
+
+import "./globals.css";
 
 const montserratHeading = Montserrat({
   subsets: ["latin"],
@@ -35,7 +40,6 @@ export default function RootLayout({
       lang="en"
       className={cn(
         "h-full",
-        "dark",
         "antialiased",
         geistSans.variable,
         geistMono.variable,
@@ -43,8 +47,20 @@ export default function RootLayout({
         oxanium.variable,
         montserratHeading.variable,
       )}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </QueryProvider>
+      </body>
     </html>
   );
 }
