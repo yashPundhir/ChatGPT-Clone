@@ -10,3 +10,5 @@
 - create a test model inside `schema.prisma`
 - then again run: `bunx --bun prisma generate`
 - then run: `bunx --bun prisma migrate dev`
+
+> use command: `bunx prisma studio` to create a local instance of your DB visually
