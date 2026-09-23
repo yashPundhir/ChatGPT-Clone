@@ -1,6 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 
-import { onBoard } from "@/features/auth/action/onboard";
+import { onBoard } from "@/features/auth/actions/onboard";
 
 const RootGroupLayout = async ({ children }: { children: React.ReactNode }) => {
   await auth.protect();
