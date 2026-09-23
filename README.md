@@ -12,3 +12,15 @@
 - then run: `bunx --bun prisma migrate dev`
 
 > use command: `bunx prisma studio` to create a local instance of your DB visually
+
+## Next.js Specific rules for naming files, folders and identifiers
+
+| Element                    | Convention               | Example                                       |
+| -------------------------- | ------------------------ | --------------------------------------------- |
+| **Files** (all)            | kebab-case               | `user-profile.tsx`, `conversation-actions.ts` |
+| **Folders**                | kebab-case               | `dashboard-settings/`, `auth/`                |
+| **Component name in code** | PascalCase               | `function UserProfile() {}`                   |
+| **Functions / variables**  | camelCase                | `fetchUserData()`, `userProfileData`          |
+| **Custom hooks**           | camelCase + `use` prefix | `useAuth.ts` / `use-auth.ts`                  |
+| **Constants**              | UPPER_SNAKE_CASE         | `API_BASE_URL`                                |
+| **Types / Interfaces**     | PascalCase               | `interface UserProfileProps {}`               |
