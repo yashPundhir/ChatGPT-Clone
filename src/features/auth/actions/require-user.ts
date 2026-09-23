@@ -5,9 +5,9 @@ import { prisma } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 
 export async function requireUser() {
-  try {
-    const { userId } = await auth.protect();
+  const { userId } = await auth.protect();
 
+  try {
     const user = await prisma.user.findUnique({
       where: { clerkId: userId },
     });
@@ -18,7 +18,10 @@ export async function requireUser() {
 
     return user;
   } catch (error) {
-    console.error("Something went wrong");
-    console.error(error);
+    if (error instanceof Error && error.message.includes("onboarding")) {
+      throw error;
+    }
+    console.error("DB error:", error);
+    throw new Error("Something went wrong");
   }
 }
